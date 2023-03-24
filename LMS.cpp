@@ -48,6 +48,22 @@ int LMSClass::pullOutput()
 	return e_k;
 }
 
+// retrieve the direct output filtered signal
+int LMSClass::pullOutput2()
+{ 
+  int out = dotProduct(coefficients, noise, filterSize);
+
+  //compute LMS
+  int e_k = input[0] - out;
+  for(int i = 0; i < filterSize; i++)
+  {
+    int val = ((e_k/mu)*4);
+    coefficients[i] += scalarMultiply(val, noise[i]);
+  }
+
+  return out;
+}
+
 int LMSClass::computeLMS(int inputSamp, int noiseSamp)
 {
 	pushInput(inputSamp);

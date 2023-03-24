@@ -26,6 +26,7 @@ class LMSClass {
 		void pushInput(int sample); //add new input sample
 		void pushNoise(int sample); //add new noise sample
 		int pullOutput(); //returns e_k, the most recent sample output, updates weights
+		int pullOutput2(); //returns out
 		int computeLMS(int inputSamp, int noiseSamp);
 	//private:
 		int dotProduct(int* vector1, int* vector2, int length); //vector multiply, scaled result.
